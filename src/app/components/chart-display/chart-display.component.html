@@ -1,0 +1,150 @@
+<div
+  class="w-100 h-100 chart-div position-relative"
+  [class.remove]="baseCurrency == quoteCurrency"
+>
+  <div *ngIf="!isReload" class="position-absolute-center">
+    <svg
+      role="img"
+      aria-label="Mouth and eyes come from 9:00 and rotate clockwise into position, right eye blinks, then all parts rotate and merge into 3:00"
+      class="smiley"
+      viewBox="0 0 128 128"
+      width="128px"
+      height="128px"
+    >
+      <defs>
+        <clipPath id="smiley-eyes">
+          <circle
+            class="smiley__eye1"
+            cx="64"
+            cy="64"
+            r="8"
+            transform="rotate(-40,64,64) translate(0,-56)"
+          />
+          <circle
+            class="smiley__eye2"
+            cx="64"
+            cy="64"
+            r="8"
+            transform="rotate(40,64,64) translate(0,-56)"
+          />
+        </clipPath>
+        <linearGradient id="smiley-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#B1D57E" />
+          <stop offset="100%" stop-color="#fff" />
+        </linearGradient>
+        <mask id="smiley-mask">
+          <rect x="0" y="0" width="128" height="128" fill="url(#smiley-grad)" />
+        </mask>
+      </defs>
+      <g
+        stroke-linecap="round"
+        stroke-width="12"
+        stroke-dasharray="175.93 351.86"
+      >
+        <g>
+          <rect
+            fill="#B1D57E"
+            width="128"
+            height="64"
+            clip-path="url(#smiley-eyes)"
+          />
+          <g fill="none" stroke="#B1D57E">
+            <circle
+              class="smiley__mouth1"
+              cx="64"
+              cy="64"
+              r="56"
+              transform="rotate(180,64,64)"
+            />
+            <circle
+              class="smiley__mouth2"
+              cx="64"
+              cy="64"
+              r="56"
+              transform="rotate(0,64,64)"
+            />
+          </g>
+        </g>
+        <g mask="url(#smiley-mask)">
+          <rect
+            fill="#B1D57E"
+            width="128"
+            height="64"
+            clip-path="url(#smiley-eyes)"
+          />
+          <g fill="none" stroke="#B1D57E">
+            <circle
+              class="smiley__mouth1"
+              cx="64"
+              cy="64"
+              r="56"
+              transform="rotate(180,64,64)"
+            />
+            <circle
+              class="smiley__mouth2"
+              cx="64"
+              cy="64"
+              r="56"
+              transform="rotate(0,64,64)"
+            />
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="chart-header">
+    <div class="currency-info">
+      <div class="flags">
+        <div
+          class="currency-flag"
+          [ngClass]="true ? 'currency-flag-' + baseCurrency.toLowerCase() : ''"
+        ></div>
+        <div
+          class="currency-flag"
+          [ngClass]="true ? 'currency-flag-' + quoteCurrency.toLowerCase() : ''"
+        ></div>
+        <span class="font-color-3">Forex.com</span>
+      </div>
+      <h2>
+        {{ baseCurrency }}/{{ quoteCurrency }}
+        <span class="d-inline-block">{{
+          currentValue | currency : quoteCurrency : "symbol" : "1.6-6"
+        }}</span>
+      </h2>
+    </div>
+    <div class="data-info text-end font-color-2">
+      <p>
+        {{ differenceValue | number : "1.6-6" }}
+        ({{ differenceValue / currentValue | number : "1.6-6" }}%)
+      </p>
+    </div>
+  </div>
+  <div class="chart-container mb-3">
+    <canvas id="my-chart"></canvas>
+  </div>
+
+  <div
+    class="chart-time text-center d-flex justify-content-center gap font-color-1"
+  >
+    <button
+      *ngFor="let interval of activeIntervals"
+      class="btn"
+      [class.active]="interval.label === activeInterval"
+      (click)="setActive(interval)"
+    >
+      {{ interval.label }}
+    </button>
+  </div>
+</div>
+
+<div class="w-100 h-100 chart-div" *ngIf="baseCurrency == quoteCurrency">
+  <div class="alert alert-wrong" role="alert">
+    <span class="alert-icon alert-icon--wrong"></span>
+    <p>
+      <span> Currencies are same</span>
+      Base Currency and Quote Currency can not be same ( {{ baseCurrency }}
+      {{ quoteCurrency }} )
+    </p>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+@use "sass:color";
+@import "./colors";
+/*
+  wrong: "!",
+  warning: "i",
+  success: "url("../svg/line.svg")",
+  other: "url("../svg/line.svg")",
+*/
+
+$icon-alert: (
+  wrong: "'!'",
+  warning: "'i'",
+  success: "'?'",
+  other: "'?'",
+);
+
+@mixin alert($icon, $border, $bg, $span, $p) {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border: 1px solid transparent;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+
+  .alert-icon {
+    &::before {
+      content: $icon;
+      display: block;
+      border-radius: 100%;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      color: map-get($colors, "base-color");
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  border-color: $border;
+  background-color: $bg;
+
+  span {
+    display: block;
+    color: $span !important;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  p {
+    color: $p;
+    font-size: 11px;
+    font-weight: 400;
+  }
+}
+
+.alert {
+  @include alert("", transparent, transparent, inherit, inherit);
+}
+
+@each $type, $color in $colors-alert {
+  $map: map-get($icon-alert, $type);
+  .alert-#{$type} {
+    @include alert(
+      #{$map},
+      $color,
+      map-get($colors-light-alert, $type),
+      $color,
+      darken($color, 12%)
+    );
+  }
+
+  .alert-icon--#{$type}::before {
+    background-color: $color;
+  }
+}

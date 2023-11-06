@@ -1,0 +1,60 @@
+//Colors
+$color-light: #f4f7fc;
+
+$color-light-blue: #bacff3;
+$color-light-blue-100: #0d6efd40;
+$color-light-blue-400: #86b7fe;
+$color-light-blue-600: #dee9fc;
+
+$color-green: #33ac72;
+$color-green--light: #80d4aa;
+
+$color-chart-line: #abd275;
+$color-chart-fill: #f3f9eb;
+
+$colors-alert: (
+  wrong: #f85640,
+  warning: #fba63c,
+  success: #34a770,
+  other: #08a0f7,
+);
+
+$colors-light-alert: (
+  wrong: #fff8f8,
+  warning: #fff8ef,
+  success: #dcf3eb,
+  other: #e1f2fc,
+);
+
+$colors: (
+  "primary-color": #000000,
+  "second-color": #c4cad3,
+  "base-color": #ffffff,
+  "danger-color": #f85640,
+);
+
+$font-colors: (
+  //font colors
+  "font-color-1": #121212,
+  "font-color-3": #7d838e,
+  "font-color-2": $color-green--light,
+  "font-color-4": $color-light
+);
+
+@each $name, $color in $colors {
+  .font-#{$name} {
+    color: $color;
+  }
+}
+
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}
+
+@each $name, $font-color in $font-colors {
+  .#{$name} {
+    color: $font-color !important;
+  }
+}

@@ -1,0 +1,22 @@
+<select
+  #selectInput
+  class="form-select select-currency"
+  name="currency"
+  aria-label="currency type"
+  *ngIf="currenciesLength; else showAlert"
+  (change)="sendSelectInput(selectInput.value)"
+>
+  <option *ngFor="let currency of currencies | keyvalue" [value]="currency.key">
+    {{ currency.value }}
+  </option>
+</select>
+
+<ng-template #showAlert>
+  <div class="alert alert-wrong" role="alert">
+    <span class="alert-icon alert-icon--wrong"></span>
+    <p>
+      <span> no currency support</span>
+      there is no currency support on tradermade right now
+    </p>
+  </div>
+</ng-template>

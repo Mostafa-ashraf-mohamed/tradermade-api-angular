@@ -1,27 +1,42 @@
-# ForexExchange
+# FX Rate Comparison Web Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+This responsive web application allows users to compare historical and current exchange rates for various currency pairs. It integrates the TraderMade API for real-time data and utilizes a user-friendly interface with interactive charts and dropdown menus for easy comparison. The app is designed with a mobile-first approach, ensuring seamless usage across different devices.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Real-time and historical exchange rate comparisons
+- Interactive charts and graphs for data visualization
+- Dynamic dropdown menus for selecting currency pairs and exchanges
+- Responsive design optimized for both desktop and mobile viewing
+- unit testing for components and services
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Frontend: Angular
+- Charting Library: Chart.js
+- API Integration: TraderMade REST API
 
-## Build
+## Setup Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository to your local machine.
+git clone https://github.com/Mostafa-ashraf-mohamed/tradermade-api-angular.git
+2. Navigate to the project directory.
+cd tradermade-api-angular
+3. Install the necessary dependencies.
+npm install
+4. Run the application.
+ng serve or npm start
+5. Open your web browser and go to `http://localhost:4200/` to view the application.
 
-## Running unit tests
+## API Integration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The application utilizes the TraderMade API, enabling access to real-time and historical exchange rate data for various currency pairs. With a free account, the application can make up to 1000 REST API calls per month and utilize the streaming capabilities for up to 14 days.
 
-## Running end-to-end tests
+## important note: 
+after creating your free account and get your api key dont forget to change the api key in currency.service.ts
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## License
 
-## Further help
+This project is licensed under the [MIT](https://opensource.org/licenses/MIT) License.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Enjoy using FX Rate Comparison 😃
